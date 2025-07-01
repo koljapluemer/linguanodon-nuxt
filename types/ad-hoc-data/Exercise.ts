@@ -1,5 +1,5 @@
 export interface Exercise {
-    hash: string
+    uid: string
     instructions: string
     content: string
     blockedBy?: string[] // hashes of other exercises
