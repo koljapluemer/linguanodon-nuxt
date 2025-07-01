@@ -2,7 +2,7 @@ export interface UnitOfMeaning {
     uid: string
     language: string // references Language.tag, 
     content: string
-    wordType: string
+    linguType: string
     pronunciation?: string
     notes?: string
 
@@ -11,11 +11,9 @@ export interface UnitOfMeaning {
     related?: string[] // uids of other UnitOfMeanings
 
     userCreated: boolean
-    credit?: UnitOfMeaningCredit // license information, if needed
-}
-
-export interface UnitOfMeaningCredit {
-    creationContext: string
+    author?: string
+    
+    context: string
     license?: string
     owner?:string
     ownerLink?: string
