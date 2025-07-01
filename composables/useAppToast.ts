@@ -14,6 +14,4 @@ export const useAppToast = () => {
     }, 5000)
   }
   return { toasts, addToast }
-}
-
-export const useToast = useAppToast 
+} 

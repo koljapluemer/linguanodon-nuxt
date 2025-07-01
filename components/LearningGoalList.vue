@@ -2,7 +2,6 @@
 import { ref, onMounted, watch } from 'vue'
 import type { PropType } from 'vue'
 import type { LearningGoalSummary } from '~/types/persistent-general-data/LearningGoal'
-import { useAppToast } from '~/composables/useToast'
 
 const props = defineProps({
   goals: { type: Array as PropType<LearningGoalSummary[]>, required: true },
