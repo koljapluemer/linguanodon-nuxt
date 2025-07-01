@@ -1,12 +1,14 @@
 export interface LearningGoal {
-    id?: number
+    uid: string
+    name: string
+    parents: string[] // array of learning-goal uids
+    blockedBy: string[] // array of learning-goal uids
+    language: string // is Language.tag
+    unitsOfMeaning: string[] // array of unit-of-meaning uids
+    userCreated: boolean
+}
 
-    parents: number[] // array of learning-goal ids
-    blockedBy: number[] // array of learning-goal ids
-
-    language: string // is Language.name
-
-    unitsOfMeaning: number[] // array of unit-of-meaning ids
-    
-
+export interface LearningGoalSummary {
+    uid: string
+    name: string
 }

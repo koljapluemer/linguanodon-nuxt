@@ -1,15 +1,16 @@
 export interface UnitOfMeaning {
-    id?: number
-    languageName: string | null // references Language.name, or null if deleted
+    uid: string
+    language: string // references Language.tag, 
     content: string
     wordType: string
     pronunciation?: string
     notes?: string
 
     // note: translations and synonyms are the same thing in our context
-    translations?: number[] // ids of other UnitOfMeanings
-    related?: number[] // ids of other UnitOfMeanings
+    translations?: string[] // uids of other UnitOfMeanings
+    related?: string[] // uids of other UnitOfMeanings
 
+    userCreated: boolean
     credit?: UnitOfMeaningCredit // license information, if needed
 }
 
@@ -20,4 +21,9 @@ export interface UnitOfMeaningCredit {
     ownerLink?: string
     source?:string
     sourceLink?:string
+}
+
+export interface UnitOfMeaningSummary {
+    uid: string
+    content: string
 }
