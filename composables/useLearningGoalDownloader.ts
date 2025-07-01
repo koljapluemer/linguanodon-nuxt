@@ -43,14 +43,20 @@ export function useLearningGoalDownloader() {
       const goalUrl = `https://scintillating-empanada-730581.netlify.app/learning_goals/${language}/${goalSummary.uid}.json`
       const learningGoal: LearningGoal = await $fetch(goalUrl)
 
-      // 2. Fetch all units of meaning
+      // 2. Fetch all units of meaning (use language from UID)
       const unitUids = learningGoal.unitsOfMeaning
-      const unitPromises = unitUids.map((uid: string) => $fetch<UnitOfMeaning>(`https://scintillating-empanada-730581.netlify.app/units_of_meaning/${language}/${uid}.json`))
+      const unitPromises = unitUids.map(uid => {
+        const unitLang = uid.split('_')[0]
+        return $fetch<UnitOfMeaning>(`https://scintillating-empanada-730581.netlify.app/units_of_meaning/${unitLang}/${uid}.json`)
+      })
       const units = await Promise.all(unitPromises)
 
-      // 3. Fetch all direct translations for each unit
-      const translationUids = Array.from(new Set(units.flatMap((u: UnitOfMeaning) => u.translations ?? [])))
-      const translationPromises = translationUids.map((uid: string) => $fetch<UnitOfMeaning>(`https://scintillating-empanada-730581.netlify.app/units_of_meaning/${language}/${uid}.json`))
+      // 3. Fetch all direct translations for each unit (use language from UID)
+      const translationUids = Array.from(new Set(units.flatMap(u => u.translations ?? [])))
+      const translationPromises = translationUids.map(uid => {
+        const transLang = uid.split('_')[0]
+        return $fetch<UnitOfMeaning>(`https://scintillating-empanada-730581.netlify.app/units_of_meaning/${transLang}/${uid}.json`)
+      })
       const translations = translationUids.length ? await Promise.all(translationPromises) : []
 
       // 4. Build set of all new items (learning goal, units, translations)

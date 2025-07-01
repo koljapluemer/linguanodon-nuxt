@@ -11,7 +11,8 @@
         </div>
         <ul v-else class="divide-y divide-base-200">
           <ClientOnly>
-            <LearningGoalList
+            <component
+              :is="LearningGoalListClient"
               :goals="data || []"
               :language="language"
             />
@@ -25,7 +26,10 @@
 
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
+import { defineAsyncComponent } from 'vue'
 import type { LearningGoalSummary } from '~/types/persistent-general-data/LearningGoal'
+
+const LearningGoalListClient = defineAsyncComponent(() => import('~/components/LearningGoalList.client.vue'))
 
 const route = useRoute()
 const language = route.params.language as string
