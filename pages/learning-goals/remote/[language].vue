@@ -1,22 +1,22 @@
 <template>
-  <UContainer class="py-8">
-    <UCard>
-      <template #header>
-        <h1 class="text-2xl font-bold">Learning Goals</h1>
-      </template>
-      <div v-if="pending" class="text-center py-8">
-        <UISpinner size="lg" />
+  <div class="container mx-auto py-8">
+    <div class="card bg-base-100 shadow-xl">
+      <div class="card-body">
+        <h1 class="card-title text-2xl font-bold mb-4">Learning Goals</h1>
+        <div v-if="pending" class="space-y-2">
+          <div v-for="i in 3" :key="i" class="skeleton h-6 w-1/2"/>
+        </div>
+        <div v-else-if="error" class="text-error text-center py-8">
+          Failed to load learning goals.
+        </div>
+        <ul v-else class="divide-y divide-base-200">
+          <li v-for="goal in data" :key="goal.uid" class="py-2">
+            {{ goal.name }}
+          </li>
+        </ul>
       </div>
-      <div v-else-if="error" class="text-red-500 text-center py-8">
-        Failed to load learning goals.
-      </div>
-      <ul v-else>
-        <li v-for="goal in data" :key="goal.uid" class="py-2 border-b last:border-b-0">
-          {{ goal.name }}
-        </li>
-      </ul>
-    </UCard>
-  </UContainer>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">

@@ -30,7 +30,7 @@ As a rule:
 - utilize `@nuxt/fonts` for fonts. keep it basic.
 - use `@nuxt/icon`, so icons should be valid [iconify](https://iconify.design/)
 - use `@nuxt/test-utils` to get good unit test coverage
-- we have `@nuxt/ui`, so use `Tailwind 4` and `Reka UI` (see [doc](https://ui.nuxt.com/)).
+- we have `Tailwind` + `Daisy UI` installed, utilize that for design
     - Avoid manual CSS when possible
 
 ### Data
