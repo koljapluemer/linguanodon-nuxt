@@ -4,18 +4,22 @@
       <div class="card-body">
         <h1 class="card-title text-2xl font-bold mb-4">Learning Goals</h1>
         <div v-if="pending" class="space-y-2">
-          <div v-for="i in 3" :key="i" class="skeleton h-6 w-1/2"/>
+          <div v-for="i in 3" :key="i" class="skeleton h-6 w-1/2" />
         </div>
         <div v-else-if="error" class="text-error text-center py-8">
           Failed to load learning goals.
         </div>
         <ul v-else class="divide-y divide-base-200">
-          <li v-for="goal in data" :key="goal.uid" class="py-2">
-            {{ goal.name }}
-          </li>
+          <ClientOnly>
+            <LearningGoalList
+              :goals="data || []"
+              :language="language"
+            />
+          </ClientOnly>
         </ul>
       </div>
     </div>
+    <ToastArea />
   </div>
 </template>
 

@@ -19,6 +19,12 @@ As a rule:
 
 - Types and interfaces live in `/types` unless they are 100% only usable in one file or page. Do NOT, EVER, copypaste types in component files
 
+## Documentation
+
+- Write conceptual stuff in `doc/` as a markdown guide
+- Code should mostly document itself, see chapter above
+- Use JsDoc style annotation, but ONLY!! to explain purpose or non-obvious decisions. Do NOT! JS-Doc annotate params or returns, that is *already done* by typescript. Keep it short.
+
 ## Tech Stack
 
 - Standard Nuxt app
